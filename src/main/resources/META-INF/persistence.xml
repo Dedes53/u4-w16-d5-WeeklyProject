@@ -8,6 +8,7 @@
         <class>federicolepore.entities.Book</class>
         <class>federicolepore.entities.Magazine</class>
         <class>federicolepore.entities.User</class>
+        <class>federicolepore.entities.Loan</class>
 
 
         <properties>
