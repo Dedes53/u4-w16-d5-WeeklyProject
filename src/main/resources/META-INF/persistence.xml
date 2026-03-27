@@ -7,6 +7,7 @@
         <class>federicolepore.entities.Reading</class>
         <class>federicolepore.entities.Book</class>
         <class>federicolepore.entities.Magazine</class>
+        <class>federicolepore.entities.User</class>
 
 
         <properties>
