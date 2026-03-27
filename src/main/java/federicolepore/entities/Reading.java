@@ -7,7 +7,18 @@ import java.util.UUID;
 @Entity
 @Table(name = "readings")
 @Inheritance(strategy = InheritanceType.JOINED)
-//@DiscriminatorColumn(name="type")
+@NamedQuery(
+        name = "find_reading_by_year",
+        query = "select r from Reading r where l.publicationYear = :year"
+)
+@NamedQuery(
+        name = "find_reading_by_ISBN",
+        query = "select r from Reading r where l.ISBNcode = :isbn"
+)
+@NamedQuery(
+        name = "find_reading_by_title",
+        query = "select r from Reading r where lower(r.title) like lower(:title)"
+)
 public abstract class Reading {
 
     //  attributi
@@ -17,7 +28,7 @@ public abstract class Reading {
     private UUID id;
 
     @Column(name = "isbn_code", unique = true, nullable = false)
-    private String ISBNcode;
+    private long ISBNcode;
 
     @Column(nullable = false)
     private String title;
@@ -33,7 +44,7 @@ public abstract class Reading {
     protected Reading() {
     }
 
-    public Reading(UUID id, String ISBNcode, String title, int publicationYear, int numberOfPages) {
+    public Reading(UUID id, long ISBNcode, String title, int publicationYear, int numberOfPages) {
         this.id = id;
         this.ISBNcode = ISBNcode;
         this.title = title;
@@ -46,11 +57,11 @@ public abstract class Reading {
         return id;
     }
 
-    public String getISBNcode() {
+    public long getISBNcode() {
         return ISBNcode;
     }
 
-    public void setISBNcode(String ISBNcode) {
+    public void setISBNcode(long ISBNcode) {
         this.ISBNcode = ISBNcode;
     }
 

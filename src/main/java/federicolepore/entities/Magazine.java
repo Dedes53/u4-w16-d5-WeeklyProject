@@ -19,7 +19,7 @@ public class Magazine extends Reading {
     public Magazine() {
     }
 
-    public Magazine(UUID id, String ISBNcode, String title, int publicationYear, int numberOfPages, Frequency frequency) {
+    public Magazine(UUID id, long ISBNcode, String title, int publicationYear, int numberOfPages, Frequency frequency) {
         super(id, ISBNcode, title, publicationYear, numberOfPages);
         this.frequency = frequency;
     }
