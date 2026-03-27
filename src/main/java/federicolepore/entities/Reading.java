@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.util.UUID;
 
 @Entity
-@Table(name = "Readings")
+@Table(name = "readings")
 @Inheritance(strategy = InheritanceType.JOINED)
 //@DiscriminatorColumn(name="type")
 public abstract class Reading {
@@ -23,11 +23,23 @@ public abstract class Reading {
     private String title;
 
     @Column(name = "publication_year", nullable = false)
-    private int pubblicationYear;
+    private int publicationYear;
 
     @Column(name = "number_of_pages", nullable = false)
     private int numberOfPages;
 
+
+    //  costruttori
+    protected Reading() {
+    }
+
+    public Reading(UUID id, String ISBNcode, String title, int publicationYear, int numberOfPages) {
+        this.id = id;
+        this.ISBNcode = ISBNcode;
+        this.title = title;
+        this.publicationYear = publicationYear;
+        this.numberOfPages = numberOfPages;
+    }
 
     //  getters/setters
     public UUID getId() {
@@ -50,12 +62,12 @@ public abstract class Reading {
         this.title = title;
     }
 
-    public int getPubblicationYear() {
-        return pubblicationYear;
+    public int getPublicationYear() {
+        return publicationYear;
     }
 
-    public void setPubblicationYear(int pubblicationYear) {
-        this.pubblicationYear = pubblicationYear;
+    public void setPublicationYear(int pubblicationYear) {
+        this.publicationYear = pubblicationYear;
     }
 
     public int getNumberOfPages() {
@@ -72,10 +84,10 @@ public abstract class Reading {
                 "id=" + id +
                 ", ISBNcode='" + ISBNcode + '\'' +
                 ", title='" + title + '\'' +
-                ", pubblicationYear=" + pubblicationYear +
+                ", pubblicationYear=" + publicationYear +
                 ", numberOfPages=" + numberOfPages +
                 '}';
     }
 
-    
+
 }
