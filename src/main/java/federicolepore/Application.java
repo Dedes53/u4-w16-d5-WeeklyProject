@@ -78,12 +78,12 @@ public class Application {
         System.out.println();
 
         System.out.println("ricerca per autore");
-        System.out.println(rd.findBookByAuthor("Douglas Adams"));
+        System.out.println(rd.findBookByAuthor("do"));
         System.out.println();
 
-//        System.out.println("ricerca per titolo o parte del titolo");
-//        System.out.println(rd.findReadingByTitle("sign"));
-//        System.out.println();
+        System.out.println("ricerca per titolo o parte del titolo");
+        System.out.println(rd.findReadingByTitle("do"));
+        System.out.println();
 
         System.out.println("ricerca prestiti numero tessera");
         System.out.println(ld.findLoansByCarNumber(20001L));

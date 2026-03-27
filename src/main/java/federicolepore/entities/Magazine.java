@@ -35,7 +35,8 @@ public class Magazine extends Reading {
 
     @Override
     public String toString() {
-        return "Magazine{" +
+        return super.toString() +
+                "Magazine " +
                 "frequency=" + frequency +
                 '}';
     }

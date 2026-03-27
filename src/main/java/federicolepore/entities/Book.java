@@ -52,9 +52,12 @@ public class Book extends Reading {
 
     @Override
     public String toString() {
-        return "Book{" +
+        return super.toString() +
+                "Book, " +
                 "author='" + author + '\'' +
                 ", genre=" + genre +
                 '}';
     }
+
+
 }
