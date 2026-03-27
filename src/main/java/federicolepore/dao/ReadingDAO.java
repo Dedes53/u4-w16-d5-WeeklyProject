@@ -2,14 +2,12 @@ package federicolepore.dao;
 
 import federicolepore.entities.Book;
 import federicolepore.entities.Reading;
-import federicolepore.exeptions.NofFoundExceptionByTitle;
-import federicolepore.exeptions.NotFoundExceptionByAuthor;
-import federicolepore.exeptions.NotFoundExceptionByISBN;
-import federicolepore.exeptions.NotFoundExceptionByYear;
+import federicolepore.exeptions.*;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 
 import java.util.List;
+import java.util.UUID;
 
 public class ReadingDAO {
     private final EntityManager em;
@@ -27,6 +25,27 @@ public class ReadingDAO {
             em.persist(reading);
             t.commit();
             System.out.println("La lettura " + reading.getTitle() + " è stata salvata con successo");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    //   ricerca con id
+    public Reading getByID(UUID id) {
+        Reading r = em.find(Reading.class, id);
+        if (r == null) throw new NotFoundException(id);
+        return r;
+    }
+
+    //  rimozione con id
+    public void remove(UUID id) {
+        try {
+            EntityTransaction t = em.getTransaction();
+            t.begin();
+            Reading r = this.getByID(id); //controllo che non sia nulla già nel metodo getByID
+            em.remove(r);
+            t.commit();
+            System.out.println("La lettura con id: " + id + " è stata rimosso con successo");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -61,7 +80,6 @@ public class ReadingDAO {
         if (res.isEmpty()) throw new NofFoundExceptionByTitle(t);
         return res;
     }
-
 
     //  rimozione
     public void removeByISBN(long isbn) {

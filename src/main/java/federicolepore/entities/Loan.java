@@ -7,6 +7,14 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "loans")
+@NamedQuery(
+        name = "find_readings_loaned_by_card",
+        query = "select l.reading from Loan l where l.user.cardNumber = :card and l.retDate is null"
+)
+@NamedQuery(
+        name = "find_unreturned_loans",
+        query = "select l from Loan l where l.retDate is null and l.expDate < :today"
+)
 public class Loan {
 
     //  attributi
