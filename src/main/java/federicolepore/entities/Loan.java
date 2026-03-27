@@ -36,7 +36,7 @@ public class Loan {
     @Column(name = "expiration_date", nullable = false)
     private LocalDate expDate;
 
-    @Column(name = "return_date")
+    @Column(name = "return_date", nullable = true)
     private LocalDate retDate;
 
     @Column(name = "expired")
@@ -46,8 +46,7 @@ public class Loan {
     protected Loan() {
     }
 
-    public Loan(UUID id, User user, Reading reading, LocalDate startDate, LocalDate retDate) {
-        this.id = id;
+    public Loan(User user, Reading reading, LocalDate startDate, LocalDate retDate) {
         this.user = user;
         this.reading = reading;
         this.startDate = startDate;

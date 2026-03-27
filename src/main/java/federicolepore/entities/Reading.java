@@ -9,11 +9,11 @@ import java.util.UUID;
 @Inheritance(strategy = InheritanceType.JOINED)
 @NamedQuery(
         name = "find_reading_by_year",
-        query = "select r from Reading r where l.publicationYear = :year"
+        query = "select r from Reading r where r.publicationYear = :year"
 )
 @NamedQuery(
         name = "find_reading_by_ISBN",
-        query = "select r from Reading r where l.ISBNcode = :isbn"
+        query = "select r from Reading r where r.isbnCode = :isbn"
 )
 @NamedQuery(
         name = "find_reading_by_title",
@@ -28,7 +28,7 @@ public abstract class Reading {
     private UUID id;
 
     @Column(name = "isbn_code", unique = true, nullable = false)
-    private long ISBNcode;
+    private long isbnCode;
 
     @Column(nullable = false)
     private String title;
@@ -44,9 +44,8 @@ public abstract class Reading {
     protected Reading() {
     }
 
-    public Reading(UUID id, long ISBNcode, String title, int publicationYear, int numberOfPages) {
-        this.id = id;
-        this.ISBNcode = ISBNcode;
+    public Reading(long ISBNcode, String title, int publicationYear, int numberOfPages) {
+        this.isbnCode = ISBNcode;
         this.title = title;
         this.publicationYear = publicationYear;
         this.numberOfPages = numberOfPages;
@@ -57,12 +56,12 @@ public abstract class Reading {
         return id;
     }
 
-    public long getISBNcode() {
-        return ISBNcode;
+    public long getIsbnCode() {
+        return isbnCode;
     }
 
-    public void setISBNcode(long ISBNcode) {
-        this.ISBNcode = ISBNcode;
+    public void setIsbnCode(long isbnCode) {
+        this.isbnCode = isbnCode;
     }
 
     public String getTitle() {
@@ -93,7 +92,7 @@ public abstract class Reading {
     public String toString() {
         return "Reading{" +
                 "id=" + id +
-                ", ISBNcode='" + ISBNcode + '\'' +
+                ", ISBNcode='" + isbnCode + '\'' +
                 ", title='" + title + '\'' +
                 ", pubblicationYear=" + publicationYear +
                 ", numberOfPages=" + numberOfPages +

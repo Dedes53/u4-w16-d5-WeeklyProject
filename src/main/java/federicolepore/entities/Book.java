@@ -3,14 +3,12 @@ package federicolepore.entities;
 import federicolepore.enumerators.Genres;
 import jakarta.persistence.*;
 
-import java.util.UUID;
-
 @Entity
 @Table(name = "books")
 
 @NamedQuery(
         name = "find_book_by_author",
-        query = "select b from Book where lower(b.author) like lower(:author)"
+        query = "select b from Book b where lower(b.author) like lower(:author)"
 )
 public class Book extends Reading {
 
@@ -27,8 +25,8 @@ public class Book extends Reading {
     public Book() {
     }
 
-    public Book(UUID id, long ISBNcode, String title, int publicationYear, int numberOfPages, String author, Genres genre) {
-        super(id, ISBNcode, title, publicationYear, numberOfPages);
+    public Book(long ISBNcode, String title, int publicationYear, int numberOfPages, String author, Genres genre) {
+        super(ISBNcode, title, publicationYear, numberOfPages);
         this.author = author;
         this.genre = genre;
     }

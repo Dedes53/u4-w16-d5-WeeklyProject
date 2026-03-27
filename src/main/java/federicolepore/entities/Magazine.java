@@ -3,8 +3,6 @@ package federicolepore.entities;
 import federicolepore.enumerators.Frequency;
 import jakarta.persistence.*;
 
-import java.util.UUID;
-
 @Entity
 @Table(name = "magazines")
 public class Magazine extends Reading {
@@ -19,8 +17,8 @@ public class Magazine extends Reading {
     public Magazine() {
     }
 
-    public Magazine(UUID id, long ISBNcode, String title, int publicationYear, int numberOfPages, Frequency frequency) {
-        super(id, ISBNcode, title, publicationYear, numberOfPages);
+    public Magazine(long ISBNcode, String title, int publicationYear, int numberOfPages, Frequency frequency) {
+        super(ISBNcode, title, publicationYear, numberOfPages);
         this.frequency = frequency;
     }
 
